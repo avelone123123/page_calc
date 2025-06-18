@@ -24,10 +24,10 @@
             --font-main: 'Inter', sans-serif;
             --border-radius: 8px;
             --shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-            /* ИЗМЕНЕНО: Обновленные, более живые цвета для меток */
-            --tag-bestseller-bg: #e74c3c;  /* Красный для HOT */
-            --tag-new-bg: #2a527a;          /* Приглушенный синий для "Новинка" */
-            --tag-low-stock-bg: #8c5a03;    /* Приглушенный янтарный для "Мало" */
+            /* Цвета для меток */
+            --tag-bestseller-bg: #e74c3c;
+            --tag-new-bg: #2a527a;
+            --tag-low-stock-bg: #8c5a03;
             --tag-text-color: #ffffff;
         }
 
@@ -129,7 +129,7 @@
             width: 35%;
             display: flex;
             flex-direction: column;
-            gap: 8px; /* Немного увеличили отступ */
+            gap: 8px;
             align-items: flex-start;
         }
         
@@ -139,18 +139,18 @@
             flex-wrap: wrap;
         }
         
-        /* ИЗМЕНЕНО: Добавлен эффект "стикера" для всех плашек */
+        /* ИЗМЕНЕНО: Размер стикеров уменьшен ~на 20% */
         .tag {
-            font-size: 11px;
+            font-size: 9px; /* Уменьшено с 11px */
             font-weight: 600;
-            padding: 4px 10px; /* Увеличили паддинг для иконок */
-            border-radius: 12px; /* Сделали форму "таблетки" */
+            padding: 3px 8px; /* Уменьшено с 4px 10px */
+            border-radius: 10px; /* Уменьшено с 12px */
             color: var(--tag-text-color);
             text-transform: uppercase;
             letter-spacing: 0.5px;
             display: inline-flex;
             align-items: center;
-            gap: 5px; /* Отступ между иконкой и текстом */
+            gap: 4px; /* Уменьшено с 5px */
             box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0,0,0,0.3);
         }
 
@@ -526,12 +526,12 @@
                 row.dataset.category = currentCategory;
                 if (this.state.collapsedCategories.has(currentCategory)) row.classList.add('hidden');
                 
-                // ИЗМЕНЕНО: Добавлены иконки для стикеров
+                // ИЗМЕНЕНО: Текст на стикерах обновлен
                 const tagsHtml = `
                     <div class="tags-container">
                         ${item.isBestseller ? '<span class="tag tag-bestseller">🔥 HOT</span>' : ''}
-                        ${item.isNew ? '<span class="tag tag-new">✨ Новинка</span>' : ''}
-                        ${item.isLowStock ? '<span class="tag tag-low-stock">⏳ Осталось мало</span>' : ''}
+                        ${item.isNew ? '<span class="tag tag-new">✨ new</span>' : ''}
+                        ${item.isLowStock ? '<span class="tag tag-low-stock">⏳ мало</span>' : ''}
                     </div>
                 `;
 
