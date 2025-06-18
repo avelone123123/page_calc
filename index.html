@@ -24,6 +24,11 @@
             --font-main: 'Inter', sans-serif;
             --border-radius: 8px;
             --shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            /* Цвета для меток */
+            --tag-bestseller-bg: #e74c3c; /* Красный */
+            --tag-new-bg: #2ecc71;       /* Зеленый */
+            --tag-low-stock-bg: #f39c12; /* Желтый */
+            --tag-text-color: #ffffff;
         }
 
         body {
@@ -48,7 +53,6 @@
             to { opacity: 1; }
         }
 
-        /* Фильтр */
         .filter-wrapper {
             margin: 15px 0;
             max-width: 100%;
@@ -100,6 +104,7 @@
             padding: 10px 12px;
             text-align: left;
             border-bottom: 1px solid var(--border-color);
+            vertical-align: middle;
         }
 
         #priceTable th {
@@ -112,11 +117,42 @@
             top: 0;
             background: var(--surface-color);
             z-index: 1;
+            /* ЗАДАНИЕ 5: Выделение цветом и центрирование */
+            text-align: center;
+            background-color: #333;
         }
 
         #priceTable tbody tr:last-child td {
             border-bottom: none;
         }
+        
+        /* ЗАДАНИЕ 1, 2, 3: Стили для ячейки с названием и метками */
+        .col-name { 
+            width: 35%;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            align-items: flex-start;
+        }
+        
+        .tags-container {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+        
+        .tag {
+            font-size: 10px;
+            font-weight: 600;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: var(--tag-text-color);
+            text-transform: uppercase;
+        }
+
+        .tag-bestseller { background-color: var(--tag-bestseller-bg); }
+        .tag-new { background-color: var(--tag-new-bg); }
+        .tag-low-stock { background-color: var(--tag-low-stock-bg); }
 
         .category-row {
             cursor: pointer;
@@ -148,10 +184,9 @@
             display: none;
         }
 
-        .col-name { width: 35%; }
-        .col-brand { width: 15%; color: var(--text-muted-color); }
+        .col-brand { width: 15%; color: var(--text-muted-color); text-align: center; }
         .col-price { width: 12%; text-align: center; }
-        .col-qty { width: 20%; text-align: center; }
+        .col-qty { width: 18%; text-align: center; }
         .col-sum { width: 15%; text-align: right; font-weight: 500; }
 
         .price-highlight {
@@ -185,9 +220,10 @@
         .quantity-btn:hover {
             background: var(--primary-color);
         }
-
+        
+        /* ЗАДАНИЕ 4: Поле для количества сужено */
         .quantity-input {
-            width: 60px;
+            width: 45px;
             height: 34px;
             text-align: center;
             background: var(--bg-color);
@@ -260,11 +296,6 @@
             min-width: 140px;
         }
 
-        .action-button:hover {
-            transform: none;
-            box-shadow: none;
-        }
-
         .whatsapp-btn {
             background-color: var(--success-color);
             color: white;
@@ -303,10 +334,8 @@
         .toast-notification.show {
             opacity: 1;
             visibility: visible;
-            transform: translateX(-50%);
         }
-
-        /* Кнопка "Наверх" */
+        
         .scroll-top-btn {
             display: none;
             position: fixed;
@@ -335,45 +364,13 @@
 
         @media (max-width: 768px) {
             body { padding: 10px; font-size: 14px; }
-            .calculator-container { max-width: 100%; }
-            .filter-wrapper { margin: 10px 0; }
-            .filter-input { font-size: 14px; padding: 8px; }
-            .table-wrapper { margin-top: 10px; }
             .table-wrapper::before { display: block; }
-            #priceTable { min-width: 500px; }
             #priceTable th, #priceTable td { padding: 8px 10px; }
-            #priceTable th { font-size: 10px; }
-            .category-row td { font-size: 14px; padding-left: 10px; }
-            .category-row td::before { font-size: 11px; }
-            .col-name { width: 40%; }
             .col-brand { display: none; }
-            .col-price { width: 15%; font-size: 13px; }
-            .col-qty { width: 25%; }
-            .col-sum { width: 20%; font-size: 13px; }
-            .quantity-btn { width: 30px; height: 30px; font-size: 18px; }
-            .quantity-input { width: 50px; height: 32px; font-size: 14px; }
-            .summary-panel { flex-direction: column; align-items: stretch; padding: 12px; }
-            .totals { font-size: 13px; }
-            .final-total { font-size: 20px; }
-            .kaspi-info { font-size: 11px; }
-            .actions { width: 100%; flex-direction: column; gap: 8px; }
-            .action-button { width: 100%; padding: 12px; font-size: 14px; }
-        }
-
-        @media (max-width: 480px) {
-            body { padding: 8px; }
-            .filter-input { font-size: 13px; }
-            #priceTable th, #priceTable td { padding: 6px 8px; }
-            #priceTable th { font-size: 9px; }
-            .category-row td { font-size: 13px; }
-            .col-price { font-size: 12px; }
-            .col-sum { font-size: 12px; }
-            .quantity-btn { width: 28px; height: 28px; font-size: 16px; }
-            .quantity-input { width: 45px; height: 30px; font-size: 13px; }
-            .totals { font-size: 12px; }
-            .final-total { font-size: 18px; }
-            .action-button { font-size: 13px; }
-            .scroll-top-btn { width: 36px; height: 36px; font-size: 18px; }
+            .quantity-input { width: 40px; height: 32px; font-size: 14px; }
+            .summary-panel { flex-direction: column; align-items: stretch; }
+            .actions { width: 100%; flex-direction: column; }
+            .action-button { width: 100%; }
         }
     </style>
 </head>
@@ -414,11 +411,11 @@
     <div id="loader">Загрузка прайс-листа...</div>
     <div id="toast" class="toast-notification"></div>
     <button class="scroll-top-btn" id="scrollTopBtn" title="Наверх">↑</button>
-
     <script>
     const app = {
         config: {
-            csvPath: "prices.csv",
+            // ССЫЛКА НА ВАШУ GOOGLE ТАБЛИЦУ В ФОРМАТЕ CSV
+            csvPath: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRf91pHVQrjqrypmTgKIDQgFXceNVoirsdmrbXTMzKAxYndOODSuTPzVFcl0qcGZOA_uuXykLpji2ea/pub?gid=1610855809&single=true&output=csv",
             whatsAppPhone: "77780990459",
             priceTiers: {
                 tier1: { limit: 0, label: "до 60 000 ₸" },
@@ -459,54 +456,44 @@
         },
         async loadData() {
             try {
-                console.log("Попытка загрузки CSV по пути:", this.config.csvPath);
-                const response = await fetch(this.config.csvPath, {
-                    method: 'GET',
-                    headers: { 'Accept': 'text/csv' }
-                });
-                if (!response.ok) {
-                    throw new Error(`Ошибка HTTP: ${response.status} - Файл не найден или недоступен`);
-                }
+                const response = await fetch(this.config.csvPath, { cache: "no-store" });
+                if (!response.ok) throw new Error(`Ошибка HTTP: ${response.status}`);
                 const csvText = await response.text();
-                if (!csvText.trim()) {
-                    throw new Error("CSV-файл пустой");
-                }
-                console.log("CSV загружен, начало парсинга...");
+                if (!csvText.trim()) throw new Error("CSV-файл пустой");
+
                 Papa.parse(csvText, {
                     header: true,
                     skipEmptyLines: true,
                     complete: (results) => {
-                        console.log("Данные после парсинга:", results.data);
                         this.state.products = results.data
                             .filter(row => row.Название && row["Цена1"])
                             .map(row => ({
                                 id: row.ID,
-                                name: row.Название.trim(),
-                                brand: row.Бренд.trim(),
+                                name: row.Название?.trim(),
+                                brand: row.Бренд?.trim(),
                                 prices: {
                                     p1: parseFloat(row["Цена1"]) || 0,
                                     p2: parseFloat(row["Цена2"]) || 0,
                                     p3: parseFloat(row["Цена3"]) || 0,
                                 },
-                                category: row.Категория.trim()
+                                category: row.Категория?.trim(),
+                                // ИСПРАВЛЕНО: Более надежная проверка для меток
+                                isBestseller: String(row.бестселлер || '').trim().toLowerCase() === 'да',
+                                isNew: String(row.новинка || '').trim().toLowerCase() === 'да',
+                                isLowStock: String(row.мало || '').trim().toLowerCase() === 'да',
                             }));
-                        if (this.state.products.length === 0) {
-                            throw new Error("Нет валидных данных в CSV");
-                        }
-                        console.log("Обработанные продукты:", this.state.products);
+                        if (this.state.products.length === 0) throw new Error("Нет валидных данных в CSV");
+
                         this.renderTable();
                         this.restoreState();
                         this.calculate();
                         this.elements.loader.style.display = 'none';
                         this.elements.appContainer.style.display = 'block';
                     },
-                    error: (error) => {
-                        this.elements.loader.textContent = "Ошибка обработки CSV. Проверьте формат файла.";
-                        console.error("Ошибка PapaParse:", error);
-                    }
+                    error: (err) => { throw new Error("Ошибка обработки CSV: " + err); }
                 });
             } catch (error) {
-                this.elements.loader.textContent = "Не удалось загрузить прайс-лист. Убедитесь, что prices.csv находится в папке.";
+                this.elements.loader.textContent = `Не удалось загрузить прайс-лист. Проверьте ссылку и структуру CSV файла. Ошибка: ${error.message}`;
                 console.error("Ошибка загрузки CSV:", error);
             }
         },
@@ -516,29 +503,36 @@
             const filter = this.state.filter.toLowerCase();
 
             this.state.products.forEach(item => {
-                if (filter && !item.name.toLowerCase().includes(filter)) {
-                    return;
-                }
+                if (filter && !item.name.toLowerCase().includes(filter)) return;
+
                 if (item.category && item.category !== currentCategory) {
                     currentCategory = item.category;
                     const row = document.createElement("tr");
-                    row.classList.add('category-row');
-                    if (this.state.collapsedCategories.has(currentCategory)) {
-                        row.classList.add('collapsed');
-                    }
+                    row.className = 'category-row';
+                    if (this.state.collapsedCategories.has(currentCategory)) row.classList.add('collapsed');
                     row.dataset.category = currentCategory;
                     row.innerHTML = `<td colspan="7">${item.category}</td>`;
                     fragment.appendChild(row);
                 }
                 const row = document.createElement("tr");
-                row.classList.add('product-row');
+                row.className = 'product-row';
                 row.dataset.id = item.id;
                 row.dataset.category = currentCategory;
-                if (this.state.collapsedCategories.has(currentCategory)) {
-                    row.classList.add('hidden');
-                }
+                if (this.state.collapsedCategories.has(currentCategory)) row.classList.add('hidden');
+
+                const tagsHtml = `
+                    <div class="tags-container">
+                        ${item.isBestseller ? '<span class="tag tag-bestseller">Бестселлер</span>' : ''}
+                        ${item.isNew ? '<span class="tag tag-new">Новинка</span>' : ''}
+                        ${item.isLowStock ? '<span class="tag tag-low-stock">Осталось мало</span>' : ''}
+                    </div>
+                `;
+
                 row.innerHTML = `
-                    <td class="col-name">${item.name}</td>
+                    <td class="col-name">
+                        <span>${item.name}</span>
+                        ${tagsHtml}
+                    </td>
                     <td class="col-brand">${item.brand}</td>
                     <td class="col-price price-p1">${item.prices.p1.toLocaleString('ru-RU')}</td>
                     <td class="col-price price-p2">${item.prices.p2.toLocaleString('ru-RU')}</td>
@@ -546,7 +540,7 @@
                     <td class="col-qty">
                         <div class="quantity-control">
                             <button class="quantity-btn" data-action="decrease" data-id="${item.id}">-</button>
-                            <input type="number" class="quantity-input" min="0" value="0" data-id="${item.id}" />
+                            <input type="number" class="quantity-input" min="0" max="99" value="0" data-id="${item.id}" />
                             <button class="quantity-btn" data-action="increase" data-id="${item.id}">+</button>
                         </div>
                     </td>
@@ -559,6 +553,31 @@
             this.elements.tableBody.addEventListener('click', this.handleQuantityButtonClick);
             this.elements.tableBody.addEventListener('input', this.handleQuantityInput);
             this.restoreQuantities();
+        },
+        handleQuantityButtonClick(event) {
+            const button = event.target.closest('.quantity-btn');
+            if (!button) return;
+            const { action, id } = button.dataset;
+            const input = this.elements.tableBody.querySelector(`input[data-id='${id}']`);
+            if (!input) return;
+            let value = parseInt(input.value, 10) || 0;
+            const max = parseInt(input.max, 10) || 99;
+            if (action === 'increase' && value < max) {
+                value++;
+            } else if (action === 'decrease' && value > 0) {
+                value--;
+            }
+            input.value = value;
+            this.updateAndSave();
+        },
+        handleQuantityInput(event) {
+            const input = event.target;
+            if (!input.classList.contains('quantity-input')) return;
+            const max = parseInt(input.max, 10) || 99;
+            let value = parseInt(input.value, 10) || 0;
+            if (value > max) value = max;
+            input.value = Math.max(0, Math.floor(value));
+            this.updateAndSave();
         },
         handleCategoryClick(event) {
             const row = event.target.closest('.category-row');
@@ -585,27 +604,6 @@
             } else {
                 btn.classList.remove('visible');
             }
-        },
-        handleQuantityButtonClick(event) {
-            const button = event.target.closest('.quantity-btn');
-            if (!button) return;
-            const { action, id } = button.dataset;
-            const input = this.elements.tableBody.querySelector(`input[data-id='${id}']`);
-            if (!input) return;
-            let value = parseInt(input.value, 10) || 0;
-            if (action === 'increase') {
-                value++;
-            } else if (action === 'decrease' && value > 0) {
-                value--;
-            }
-            input.value = value;
-            this.updateAndSave();
-        },
-        handleQuantityInput(event) {
-            const input = event.target;
-            if (!input.classList.contains('quantity-input')) return;
-            input.value = Math.max(0, Math.floor(parseInt(input.value, 10) || 0));
-            this.updateAndSave();
         },
         updateAndSave() {
             this.calculate();
@@ -642,7 +640,7 @@
                 const subtotal = price * qty;
                 finalTotal += subtotal;
                 row.querySelector('.sum').textContent = `${subtotal.toLocaleString('ru-RU')} ₸`;
-                row.querySelector(`.price-p${tier}`).classList.add('price-highlight');
+                row.querySelector(`.price-p${tier}`)?.classList.add('price-highlight');
             });
             const savings = baseTotal - finalTotal;
             this.elements.totalEl.textContent = `${finalTotal.toLocaleString('ru-RU')} ₸`;
@@ -687,8 +685,8 @@
                     orderItems.push({ product, qty });
                 }
             });
-            const tier = baseTotal >= this.config.priceTiers.tier3.limit ? 3 
-                       : baseTotal >= this.config.priceTiers.tier2.limit ? 2 : 1;
+            const tier = baseTotal >= this.config.priceTiers.tier3.limit ? 3
+                         : baseTotal >= this.config.priceTiers.tier2.limit ? 2 : 1;
             let finalTotal = 0;
             let orderText = "*Мой заказ:*\n";
             const orderParams = [];
