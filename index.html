@@ -374,7 +374,8 @@
             body { padding: 10px; font-size: 14px; }
             .table-wrapper::before { display: block; }
             #priceTable th, #priceTable td { padding: 8px 10px; }
-            .col-brand { display: none; }
+            /* СТРОКА НИЖЕ БЫЛА УДАЛЕНА, ЧТОБЫ СТОЛБЕЦ "БРЕНД" БЫЛ ВИДЕН НА ТЕЛЕФОНЕ */
+            /* .col-brand { display: none; } */
             .quantity-input { width: 40px; height: 32px; font-size: 14px; }
             .summary-panel { flex-direction: column; align-items: stretch; }
             .actions { width: 100%; flex-direction: column; }
@@ -694,7 +695,8 @@
                     orderItems.push({ product, qty });
                 }
             });
-            const tier = baseTotal >= this.config.priceTiers.tier3.limit ? 3
+            const tier = baseTotal >= this.config.priceTiers.tier3.limit
+                         ? 3
                          : baseTotal >= this.config.priceTiers.tier2.limit ? 2 : 1;
             let finalTotal = 0;
             let orderText = "*Мой заказ:*\n";
